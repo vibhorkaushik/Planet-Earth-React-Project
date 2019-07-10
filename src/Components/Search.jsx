@@ -7,6 +7,12 @@ import Planet from './Planet';
 
 const PlanetList = ({ planets }) => (
     <div className="row planet-result" >
+        <div className="row">
+            <div className="col-md-0 col-md-push-12 animate-box"></div>
+            <div className="col-md-12 col-md-pull-0 animate-box">
+                <h3 class="planet-list-label">Planets And Their Population</h3>
+            </div>
+        </div>
         {
             planets.map((planetDetail, index) => <Planet key={index} planetDetail={planetDetail} />)
         }

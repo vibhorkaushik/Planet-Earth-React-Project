@@ -37,7 +37,7 @@ body {
   background-color: #008fff66 !important;
 }
 
-.planet-detail h2{
+.planet-detail h2 {
   border: thin solid #e5e5e5;
   padding: 10px 0px 15px 20px;
   width: 100%;
@@ -45,15 +45,15 @@ body {
   color: white;
 }
 
-.logout-span{
-  color:white;
+.logout-span {
+  color: white;
 }
-.logout-span:hover{
+.logout-span:hover {
   text-decoration: underline;
   cursor: pointer;
 }
 
-.planet-result{
+.planet-result {
   margin: 0 0 0 0;
   max-width: 66%;
   border: thin solid #ddd;
@@ -61,6 +61,7 @@ body {
   padding: 2rem;
   margin-bottom: 2rem;
   margin-left: 0 !important;
+  padding-top: 0;
 }
 
 .planet-icon {
@@ -77,6 +78,15 @@ body {
   margin-top: 0px;
   float: left;
   margin-right: 10px;
+}
+
+.planet-list-label {
+  padding: 10px 0 15px 0;
+  margin: 0 auto;
+  background: #e6e6e6;
+  margin-bottom: 25px;
+  text-align: center;
+  width: 50%;
 }
 
 .loader {
@@ -6442,8 +6452,6 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   color: #444;
 }
 
-
-
 .pagination {
   display: inline-block;
   padding-left: 0;
@@ -6695,7 +6703,6 @@ a.thumbnail:focus,
 a.thumbnail.active {
   border-color: #337ab7;
 }
-
 
 @-webkit-keyframes progress-bar-stripes {
   from {
@@ -7541,6 +7548,5 @@ button.list-group-item-danger.active:focus {
     display: none !important;
   }
 }
-
 
 /*# sourceMappingURL=bootstrap.css.map */

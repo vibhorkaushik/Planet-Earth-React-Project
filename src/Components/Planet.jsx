@@ -5,7 +5,7 @@ class Planet extends React.Component {
 
     render() {
         const { planetDetail } = this.props;
-        let [barRow, classColor] = [10, "info"];
+        let [barRow, classColor, population] = [10, "info", 0];
 
         let populationLimit = [
             { population: 10, class: "info" },
@@ -25,6 +25,7 @@ class Planet extends React.Component {
             if (obj.population > planetDetail.population) {
                 barRow = populationLimit.indexOf(obj) * 10;
                 classColor = obj.class;
+                population = planetDetail.population;
                 break;
             }
         }
@@ -37,7 +38,7 @@ class Planet extends React.Component {
             <div className="row">
                 <a href={planetUrl} className="planet-bar">
                     <div className="col-md-10 col-md-push-2 animate-box">
-                        <ProgressBar variant={classColor} now={barRow} />
+                        <ProgressBar variant={classColor} now={barRow} label={population} />
                     </div>
                     <div className="col-md-2 col-md-pull-10 animate-box">
 
