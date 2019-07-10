@@ -17,7 +17,6 @@ class App extends React.Component {
     this.state = {
       isLoggedIn: false
     }
-
     this.handleLogin = this.handleLogin.bind(this);
   }
 

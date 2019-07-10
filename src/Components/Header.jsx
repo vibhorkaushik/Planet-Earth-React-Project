@@ -10,7 +10,8 @@ class Header extends React.Component {
 
     handleLogout() {
         sessionStorage.clear();
-        this.props.history.push('/')
+        // this.props.history.push('/')
+        this.props.handleLogin(false);
     }
 
     render() {
@@ -28,7 +29,7 @@ class Header extends React.Component {
                                     <ul>
                                         {console.log(this.props)}
                                         {this.props.isLoggedIn && <li className=""><Link to="/search">Search</Link></li>}
-                                        {this.props.isLoggedIn && <li className=""><span onClick={this.handleLogout} >Log Out</span></li>}
+                                        {this.props.isLoggedIn && <li className=""><span class="logout-span" onClick={this.handleLogout} >Log Out</span></li>}
                                     </ul>
                                 </div>
                             </div>
@@ -46,4 +47,4 @@ class Header extends React.Component {
     }
 }
 
-export default withRouter(Header);
+export default Header;

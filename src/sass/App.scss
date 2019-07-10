@@ -45,6 +45,13 @@ body {
   color: white;
 }
 
+.logout-span{
+  color:white;
+}
+.logout-span:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
 
 .planet-result{
   margin: 0 0 0 0;
@@ -1463,7 +1470,7 @@ article p.author-wrap .author {
 }
 #colorlib-footer .copy {
   background: #262626;
-  padding: 7em 0;
+  padding: 10px 0;
 }
 #colorlib-footer .copy p {
   margin-bottom: 0;
