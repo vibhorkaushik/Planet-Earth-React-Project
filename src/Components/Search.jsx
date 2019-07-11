@@ -88,7 +88,7 @@ class Search extends React.Component {
             this.state.searchAllowed = true;
             let apiURL = Config.baseUrl + Config.planetSearchEndpoint;
             const resp = await axios.get(apiURL + searchedText);
-            this.setState({ planets: resp.data.results, dataPoints: this.convertInToChartData(resp.data.results), isLoading: false, nextUrl: resp.data.next, totalResults: resp.data.count });
+            this.setState({ planets: this.convertInToChartData(resp.data.results), isLoading: false, nextUrl: resp.data.next, totalResults: resp.data.count });
         }
 
         this.setState({ searchAllowed: this.state.searchAllowed });
@@ -98,7 +98,7 @@ class Search extends React.Component {
         event.preventDefault();
         this.setState({ isLoading: true });
         const resp = await axios.get(this.state.nextUrl);
-        let planets = this.state.planets.concat(resp.data.results)
+        let planets = this.convertInToChartData(this.state.planets.concat(resp.data.results))
 
         this.setState({
             planets: planets,
