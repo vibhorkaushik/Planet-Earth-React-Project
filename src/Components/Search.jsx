@@ -4,13 +4,14 @@ import '../index.css';
 import Config from "../Config";
 import Loader from "./Loader";
 import Planet from './Planet';
+import debounce from 'lodash/debounce';
 
 const PlanetList = ({ planets }) => (
     <div className="row planet-result" >
         <div className="row">
             <div className="col-md-0 col-md-push-12 animate-box"></div>
             <div className="col-md-12 col-md-pull-0 animate-box">
-                <h3 class="planet-list-label">Planets And Their Population</h3>
+                <h3 className="planet-list-label">Planets And Their Population</h3>
             </div>
         </div>
         {
@@ -40,11 +41,24 @@ class Search extends React.Component {
         return planets;
     }
 
-    onChangeHandle = async (event) => {
+
+    handleChange = (event) => {
         event.preventDefault();
         this.setState({ planetName: event.target.value });
+        return this.SearchPlanets(event.target.value)
+    }
+
+    SearchPlanets = debounce(async (value) => {
+        let searchedText = value;
+        if (!searchedText.length) {
+            this.setState({ planets: [], isLoading: false, nextUrl: null, totalResults: 0 });
+            return;
+        }
         let searchCount = sessionStorage.getItem('UserSearchCount');
         let userData = sessionStorage.getItem('UserData');
+        if(!userData){
+           return this.props.history.push('/')
+        }
         if (!searchCount) {
             searchCount = {
                 searchCount: 1,
@@ -56,7 +70,7 @@ class Search extends React.Component {
             searchCount = JSON.parse(searchCount);
             userData = JSON.parse(userData);
             let isStillOneMinute = (new Date() < new Date(searchCount.time).setMinutes(new Date(searchCount.time).getMinutes() + 1));
-            if (isStillOneMinute && searchCount.searchCount >= 4 && userData.name !== "Luke Skywalker") {
+            if (isStillOneMinute && searchCount.searchCount >= 5 && userData.name !== "Luke Skywalker") {
                 this.state.searchAllowed = false;
             } else {
                 this.state.searchAllowed = true;
@@ -69,25 +83,22 @@ class Search extends React.Component {
                 sessionStorage.setItem("UserSearchCount", JSON.stringify(searchCount));
             }
         }
-        let searchedText = event.target.value;
+
         if (this.state.searchAllowed && searchedText.length) {
             this.state.searchAllowed = true;
             let apiURL = Config.baseUrl + Config.planetSearchEndpoint;
             const resp = await axios.get(apiURL + searchedText);
             this.setState({ planets: resp.data.results, dataPoints: this.convertInToChartData(resp.data.results), isLoading: false, nextUrl: resp.data.next, totalResults: resp.data.count });
         }
-        if (!searchedText.length) {
-            this.setState({ planets: [], isLoading: false, nextUrl: null, totalResults: 0 });
-        }
+
         this.setState({ searchAllowed: this.state.searchAllowed });
-    }
+    }, 750);
 
     LoadMore = async (event) => {
         event.preventDefault();
         this.setState({ isLoading: true });
         const resp = await axios.get(this.state.nextUrl);
         let planets = this.state.planets.concat(resp.data.results)
-        let planetList = this.convertInToChartData(planets);
 
         this.setState({
             planets: planets,
@@ -116,7 +127,7 @@ class Search extends React.Component {
                                     type="text"
                                     placeholder="Enter Planet Name"
                                     value={this.state.planetName}
-                                    onChange={this.onChangeHandle}
+                                    onChange={this.handleChange}
                                     required
                                     className="form-control"
                                 />
@@ -136,7 +147,7 @@ class Search extends React.Component {
                     <div className="row">
                         <div className="col-md-12 text-center">
                             <ul className="pagination">
-                                {totalResults > 0 && <li className="active"><a href="#">Total results {totalResults}</a></li>}
+                                {totalResults > 0 && <li className="active"><a href="javascript:void(0)">Total results {totalResults}</a></li>}
                                 {nextUrl && <li><a href="javascript:void(0)" onClick={this.LoadMore}>»</a></li>}
                             </ul>
                         </div>

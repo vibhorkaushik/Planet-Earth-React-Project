@@ -43,6 +43,7 @@ body {
   width: 100%;
   background-color: rgb(85, 159, 235);
   color: white;
+  font-size: 22px;
 }
 
 .logout-span {
@@ -87,6 +88,7 @@ body {
   margin-bottom: 25px;
   text-align: center;
   width: 50%;
+  font-size: 19px
 }
 
 .loader {
@@ -1427,10 +1429,14 @@ article p.author-wrap .author {
 #colorlib-footer {
   background: #303133;
   color: rgba(255, 255, 255, 0.6) !important;
-  padding-top: 6em;
+  padding-top: 30px;
 }
 #colorlib-footer .colorlib-widget p {
   font-size: 13px;
+}
+
+#colorlib-footer .row-pb-md {
+  padding-bottom: 35px !important;
 }
 @media screen and (max-width: 768px) {
   #colorlib-footer .colorlib-widget {

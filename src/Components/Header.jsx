@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 class Header extends React.Component {
 
@@ -27,9 +27,8 @@ class Header extends React.Component {
                                 </div>
                                 <div className="col-md-10 text-right menu-1">
                                     <ul>
-                                        {console.log(this.props)}
                                         {this.props.isLoggedIn && <li className=""><Link to="/search">Search</Link></li>}
-                                        {this.props.isLoggedIn && <li className=""><span class="logout-span" onClick={this.handleLogout} >Log Out</span></li>}
+                                        {this.props.isLoggedIn && <li className=""><span className="logout-span" onClick={this.handleLogout} >Log Out</span></li>}
                                     </ul>
                                 </div>
                             </div>

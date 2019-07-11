@@ -23,7 +23,7 @@ const Footer = () => {
                             <li><a href="tel://8588904709"><i className="icon-phone"></i>+91 8588904709</a></li>
                             <li><a href="mailto:vibhor.kaushik@3pillarglobal.com"><i
                                 className="icon-envelope"></i>vibhor.kaushik@3pillarglobal.com</a></li>
-                            <li><a href="#"><i className="icon-location4"></i>www.PlanetWorld.com</a></li>
+                            <li><a href="/"><i className="icon-location4"></i>www.PlanetWorld.com</a></li>
                         </ul>
                     </div>
                 </div>
